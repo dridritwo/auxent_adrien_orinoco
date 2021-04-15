@@ -1,5 +1,5 @@
 
-import addAllTeddiesTo from "./services/TeddiesService.js"
+import {addAllTeddiesTo} from "./services/TeddiesService.js"
 
 
 addAllTeddiesTo("#bears-list");
