@@ -1,3 +1,5 @@
+import {addToCart} from "./CartService.js"
+
 
 export function addAllTeddiesTo(querySelector) {
     fetch("http://localhost:3000/api/teddies/").then((response) => {
@@ -95,9 +97,17 @@ function createTeddyView(teddy) {
       <h3 class="mb-0">
         ${teddy.name}
       </h3>
-      <div class="mb-1 text-muted">Nov 12</div>
+      <div class="mb-1 text-muted">${teddy.price} €</div>
       <p class="card-text mb-auto">${teddy.description}</p>
-      <a href="#">Continue reading</a>
+      <button id="teddy-article" class="btn btn-rounded bg-primary">Ajouter au panier</button>
+      
     </div>
-  </div>`
+  </div>`;
+    document.querySelector(`#teddy-article`).addEventListener('click', (event) => {
+        addToCart(teddy);
+        
+    })
 }
+
+
+
