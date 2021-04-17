@@ -1,4 +1,4 @@
-import { clearCart, removeFromCart } from "./services/CartService.js"
+import { clearCart, removeLineFromCart, updateCartCounter } from "./services/CartService.js"
 let tableBody = document.querySelector("#cart-list-body");
 let cart = JSON.parse(window.localStorage.getItem('cart'));
 
@@ -27,10 +27,8 @@ function buildCartList(cart) {
             </div>
         </div></td>
         
-        <td class="input-group mb-3 col-sm-3 col-md-3">
-            <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor">
-                
-            </select>
+        <td class="col-sm-1 col-md-1" style="text-align: center">
+        ${teddy.color}
         </td>
         <td class="col-sm-1 col-md-1" style="text-align: center">
         ${teddy.quantity}
@@ -38,22 +36,14 @@ function buildCartList(cart) {
         <td class="col-sm-1 col-md-1 text-center"><strong>${teddy.price} €</strong></td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${teddy.price * teddy.quantity} €</strong></td>
         <td class="col-sm-1 col-md-1">
-        <button type="button" id="remove-btn${teddy._id}" class="btn btn-danger">
+        <button type="button" id="remove-btn-${teddy._id}" class="btn btn-danger">
              Remove
         </button></td>
     `;
     tableBody.appendChild(tr)
-    let inputGroupSelectColor = document.querySelector("#inputGroupSelectColor");
-    console.log(teddy.colors)
-    teddy.colors.forEach(color => {
-        console.log(color)
-        let option = document.createElement("option");
-        option.text = color;
-        option.value = color;
-        inputGroupSelectColor.append(option);
-    });
-    document.querySelector(`#remove-btn${teddy._id}`).addEventListener("click", () => {
-        let newCart = removeFromCart(teddy._id);
+    
+    document.querySelector(`#remove-btn-${teddy._id}`).addEventListener("click", () => {
+        let newCart = removeLineFromCart(teddy._id);
         tableBody.innerHTML = "";
         buildCartList(newCart);
         calculateTotal(newCart);

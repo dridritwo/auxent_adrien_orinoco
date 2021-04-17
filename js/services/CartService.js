@@ -6,13 +6,14 @@ export function addToCart(teddy) {
     if (!window.localStorage.getItem('cart')){
         window.localStorage.setItem('cart', "{}")
     }
-    
+    console.log(teddy.color)
+    let productKey = `${teddy._id}-${teddy.color}`
     let cart = JSON.parse(window.localStorage.getItem('cart'));
-    if (cart[teddy._id]) {
-        cart[teddy._id].quantity += 1;
+    if (cart[productKey]) {
+        cart[productKey].quantity += 1;
     } else {
         teddy.quantity = 1;
-        cart[teddy._id] = teddy;
+        cart[productKey] = teddy;
     }
     window.localStorage.setItem('cart', JSON.stringify(cart));
     
@@ -24,9 +25,9 @@ export function clearCart() {
     updateCartCounter()
 }
 
-export function removeFromCart(id) {
+export function removeLineFromCart(id) {
     let cartToSlim = JSON.parse(window.localStorage.getItem('cart'));
-    
+    console.log(cartToSlim)
     delete cartToSlim[id];
     
     window.localStorage.setItem('cart', JSON.stringify(cartToSlim));

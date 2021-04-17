@@ -98,12 +98,28 @@ function createTeddyView(teddy) {
         ${teddy.name}
       </h3>
       <div class="mb-1 text-muted">${teddy.price} €</div>
+      <div class="input-group my-3 p-0 col-sm-3 col-md-3">
+            <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor-${teddy._id}">
+                
+            </select>
+        </div>
       <p class="card-text mb-auto">${teddy.description}</p>
-      <button id="teddy-article" class="btn btn-rounded bg-primary">Ajouter au panier</button>
+      <button id="teddy-article" class="btn btn-rounded bg-primary text-white my-3 mx-auto">Ajouter au panier</button>
       
     </div>
   </div>`;
-    document.querySelector(`#teddy-article`).addEventListener('click', (event) => {
+  let inputGroupSelectColor = document.querySelector(`#inputGroupSelectColor-${teddy._id}`);
+    console.log(teddy.colors)
+    teddy.colors.forEach(color => {
+        console.log(color)
+        let option = document.createElement("option");
+        option.text = color;
+        option.value = color;
+        inputGroupSelectColor.append(option);
+    });
+    document.querySelector(`#teddy-article`).addEventListener('click', () => {
+        
+        teddy.color = inputGroupSelectColor.value
         addToCart(teddy);
         
     })
