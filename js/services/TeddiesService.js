@@ -84,7 +84,6 @@ export function getTeddyById(id) {
     fetch(`http://localhost:3000/api/teddies/${id}`).then((response) => {
     return response.json()
 }).then((teddy) => {
-    console.log("teddy : ", teddy)
     createTeddyView(teddy);
 })
 }
@@ -109,9 +108,7 @@ function createTeddyView(teddy) {
     </div>
   </div>`;
   let inputGroupSelectColor = document.querySelector(`#inputGroupSelectColor-${teddy._id}`);
-    console.log(teddy.colors)
     teddy.colors.forEach(color => {
-        console.log(color)
         let option = document.createElement("option");
         option.text = color;
         option.value = color;
@@ -119,7 +116,7 @@ function createTeddyView(teddy) {
     });
     document.querySelector(`#teddy-article`).addEventListener('click', () => {
         
-        teddy.color = inputGroupSelectColor.value
+        teddy.color = inputGroupSelectColor.value;
         addToCart(teddy);
         
     })

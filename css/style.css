@@ -9970,6 +9970,16 @@ h3 {
   align-items: center;
 }
 
+.add-button {
+  width: 20px;
+  height: 20px;
+  padding: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
 @media (min-width: 1400px) {
   .navbar {
     padding: 0 20vw;

@@ -1,4 +1,4 @@
-import { clearCart, removeLineFromCart, updateCartCounter } from "./services/CartService.js"
+import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, calculateTotal, addOneToCart, removeOneFromCart, checkOut } from "./services/CartService.js"
 let tableBody = document.querySelector("#cart-list-body");
 let cart = JSON.parse(window.localStorage.getItem('cart'));
 
@@ -10,13 +10,13 @@ updateCartCounter()
 document.querySelector("#clear-cart").addEventListener("click", () => {
  clearCart();
  tableBody.innerHTML = "";
- console.log("cart", JSON.parse(window.localStorage.getItem('cart')));
 })
 
 function buildCartList(cart) {
     if (cart) {
     for (const [key, teddy] of Object.entries(cart)) {
         let tr = document.createElement("tr");
+        let colorWithoutSpace = stringWithoutSpace(teddy.color);
         tr.innerHTML = `
         <td class="col-sm-8 col-md-5">
         <div class="media">
@@ -31,34 +31,48 @@ function buildCartList(cart) {
         ${teddy.color}
         </td>
         <td class="col-sm-1 col-md-1" style="text-align: center">
+        <button id="add-one-to-cart-${teddy._id}-${colorWithoutSpace}" type="button" class="btn btn-danger add-button"><span>+</span></button>
         ${teddy.quantity}
+        <button type="button" class="btn btn-primary add-button" id="remove-one-from-cart-${teddy._id}-${colorWithoutSpace}"><span>-</span></button>
         </td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${teddy.price} €</strong></td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${teddy.price * teddy.quantity} €</strong></td>
         <td class="col-sm-1 col-md-1">
-        <button type="button" id="remove-btn-${teddy._id}" class="btn btn-danger">
+        <button type="button" id="remove-btn-${teddy._id}-${colorWithoutSpace}" class="btn btn-danger">
              Remove
         </button></td>
     `;
     tableBody.appendChild(tr)
     
-    document.querySelector(`#remove-btn-${teddy._id}`).addEventListener("click", () => {
-        let newCart = removeLineFromCart(teddy._id);
+    // remove line
+    document.querySelector(`#remove-btn-${teddy._id}-${colorWithoutSpace}`).addEventListener("click", () => {
+        let newCart = removeLineFromCart(`${teddy._id}-${colorWithoutSpace}`);
         tableBody.innerHTML = "";
         buildCartList(newCart);
         calculateTotal(newCart);
-    })
-    };
+    });
+
+    // add one of selected to cart
+    document.querySelector(`#add-one-to-cart-${teddy._id}-${colorWithoutSpace}`).addEventListener("click", () => {
+        let newCart = addOneToCart(`${teddy._id}-${colorWithoutSpace}`);
+        tableBody.innerHTML = "";
+        buildCartList(newCart);
+        calculateTotal(newCart);
+    });
+    
+    // remove one of selected from cart
+    document.querySelector(`#remove-one-from-cart-${teddy._id}-${colorWithoutSpace}`).addEventListener("click", () => {
+        let newCart = removeOneFromCart(`${teddy._id}-${colorWithoutSpace}`);
+        tableBody.innerHTML = "";
+        buildCartList(newCart);
+        calculateTotal(newCart);
+    });
+
+};
+// finaliser l'achat
+document.querySelector("#finaliser-achat").addEventListener("click", () => {
+    checkOut();
+});
 }
 }
 
-function calculateTotal(cart) {
-    if (cart) {
-        let total = 0;
-        let totalField = document.querySelector("#total");
-        for (const [key, teddy] of Object.entries(cart)) {
-            total += teddy.price * teddy.quantity
-        }
-        totalField.innerHTML = `${total} €`
-    }
-}
