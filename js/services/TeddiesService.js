@@ -1,19 +1,13 @@
-import {addToCart} from "./CartService.js"
+import {addToCart} from "./CartService.js";
 
-
-export function addAllTeddiesTo(querySelector) {
-    fetch("http://localhost:3000/api/teddies/").then((response) => {
-    return response.json()
-}).then((teddies) => {
+export function createCardList(querySelector, teddies) {
     let teddiesContainer = document.querySelector(querySelector);
     teddies.forEach(teddy => {
         let bearCard = createBearCard(teddy);
         teddiesContainer.appendChild(bearCard);
     });
-})
-}
+}  
 
-  
 function createBearCard(teddy) {
     let id = teddy._id;
     let colors = teddy.colors;
