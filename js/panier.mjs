@@ -2,6 +2,7 @@ import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, c
 let tableBody = document.querySelector("#cart-list-body");
 let cart = JSON.parse(window.localStorage.getItem('cart'));
 
+
 buildCartList(cart);
 calculateTotal(cart);
 updateCartCounter()
