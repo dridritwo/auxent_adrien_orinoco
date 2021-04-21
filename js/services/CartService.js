@@ -1,15 +1,11 @@
 
 
-export function getCart() {
-    return window.localStorage.getItem('cart');
-}
-
 export function addToCart(teddy) {
     if (!window.localStorage.getItem('cart')){
         window.localStorage.setItem('cart', "{}")
     }
     let productKey = `${teddy._id}-${stringWithoutSpace(teddy.color)}`
-    let cart = JSON.parse(window.localStorage.getItem('cart'));
+    let cart = getCart();
     if (cart[productKey]) {
         cart[productKey].quantity += 1;
     } else {
@@ -22,7 +18,7 @@ export function addToCart(teddy) {
 };
 
 export function addOneToCart(productKey) {
-    let cart = JSON.parse(window.localStorage.getItem('cart'));
+    let cart = getCart();
     cart[productKey].quantity += 1;
     window.localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCounter()
@@ -30,7 +26,7 @@ export function addOneToCart(productKey) {
 };
 
 export function removeOneFromCart(productKey) {
-    let cart = JSON.parse(window.localStorage.getItem('cart'));
+    let cart = getCart();
     if (cart[productKey].quantity > 1) {
         cart[productKey].quantity -= 1;
     } else {
@@ -48,7 +44,7 @@ export function clearCart() {
 }
 
 export function checkOut() {
-    let cart = JSON.parse(window.localStorage.getItem('cart'));
+    let cart = getCart();
     console.log("cart", cart)
 }
 
@@ -66,7 +62,7 @@ export function calculateTotal(cart) {
 }
 
 export function removeLineFromCart(id) {
-    let cartToSlim = JSON.parse(window.localStorage.getItem('cart'));
+    let cartToSlim = getCart();
     delete cartToSlim[id];
     
     window.localStorage.setItem('cart', JSON.stringify(cartToSlim));
@@ -76,18 +72,28 @@ export function removeLineFromCart(id) {
 
 export function updateCartCounter() {
     let cartCounter = document.querySelector("#cart-counter");
-    let cart = JSON.parse(window.localStorage.getItem('cart'));
-    let quantitySum = 0
-    if (cart) {
-        for (const [key, teddy] of Object.entries(cart)) {
-            quantitySum += teddy.quantity
-        };
-    }
+    let cart = getCart();
+    let quantitySum = getCartSize(cart);
     if (cartCounter) {
         cartCounter.innerText = quantitySum;
     }
 }
 
+export function getCart() {
+    return JSON.parse(window.localStorage.getItem('cart'));
+}
+
+export function getCartSize(cart) {
+    let quantitySum = 0;
+    if (cart != null && typeof cart === "object") {
+        let keys = Object.keys(cart);
+        keys.forEach(key => {
+            quantitySum += cart[key].quantity;
+        });
+    }
+    return quantitySum;
+}
+
 export function stringWithoutSpace(string) {
-    return string.replace(/\s/g,"");
+    return string.toString().replace(/\s/g,"");
 }

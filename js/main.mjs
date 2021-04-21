@@ -1,6 +1,6 @@
 
 import {createCardList} from "./services/TeddiesService.js"
-import {clearCart, updateCartCounter} from "./services/CartService.js"
+import {updateCartCounter} from "./services/CartService.js"
 
 
 getTeddiesListIntoContainer("#bears-list");

@@ -1,6 +1,6 @@
-import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, calculateTotal, addOneToCart, removeOneFromCart, checkOut } from "./services/CartService.js"
+import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, calculateTotal, addOneToCart, removeOneFromCart, checkOut, getCart } from "./services/CartService.js"
 let tableBody = document.querySelector("#cart-list-body");
-let cart = JSON.parse(window.localStorage.getItem('cart'));
+let cart = getCart();
 
 
 buildCartList(cart);
