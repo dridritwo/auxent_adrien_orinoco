@@ -1,4 +1,4 @@
-import { stringWithoutSpace, getCartSize } from "../../js/services/CartService.js";
+import { stringWithoutSpace, getCartSize } from "../../src/js/services/CartService.js";
 
 
 describe('stringWithoutSpace', () => {
