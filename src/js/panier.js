@@ -2,10 +2,10 @@ import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, c
 let tableBody = document.querySelector("#cart-list-body");
 let cart = getCart();
 
-
 buildCartList(cart);
 calculateTotal(cart);
 updateCartCounter()
+
 
 
 document.querySelector("#clear-cart").addEventListener("click", () => {

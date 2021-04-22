@@ -1,7 +1,8 @@
 var path = require('path');
 
 module.exports = {
-    mode: "production",
+    mode: "development",
+    watch: true,
     entry: {
         './js/main': './src/js/main.js', 
         './js/panier': './src/js/panier.js', 
@@ -11,6 +12,21 @@ module.exports = {
         filename: "[name].js",
         path: path.resolve(__dirname, "dist")
     },
+    module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: "babel-loader",
+              options: {
+                presets: ["@babel/preset-env"],
+                plugins: ["@babel/plugin-transform-runtime"]
+              }
+            }
+          }
+        ]
+      }
     // devServer: {
     //     contentBase: path.join(__dirname, 'dist'),
     //     compress: true,

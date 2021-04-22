@@ -7,15 +7,21 @@
     "tests": "karma start",
     "server": "node server/server",
     "build": "webpack",
-    "start": "webpack serve"
+    "prod": "webpack serve --mode=production",
+    "dev": "webpack serve"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.13.17",
     "bootstrap": "^4.6.0"
   },
   "devDependencies": {
-    "babel-loader": "^5.0.0",
+    "@babel/core": "^7.13.16",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
