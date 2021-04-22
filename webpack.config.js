@@ -2,7 +2,6 @@ var path = require('path');
 
 module.exports = {
     mode: "development",
-    watch: true,
     entry: {
         './js/main': './src/js/main.js', 
         './js/panier': './src/js/panier.js', 
@@ -26,10 +25,10 @@ module.exports = {
             }
           }
         ]
-      }
-    // devServer: {
-    //     contentBase: path.join(__dirname, 'dist'),
-    //     compress: true,
-    //     port: 9000
-    // }
+      },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000
+    }
 };

@@ -7,7 +7,6 @@ calculateTotal(cart);
 updateCartCounter()
 
 
-
 document.querySelector("#clear-cart").addEventListener("click", () => {
  clearCart();
  tableBody.innerHTML = "";
