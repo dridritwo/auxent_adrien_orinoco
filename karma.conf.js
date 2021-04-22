@@ -1,18 +1,28 @@
 module.exports = function(config) {
     config.set({
-        browsers: ['PhantomJS'],
+        browsers: ['ChromeHeadless', 'PhantomJS'],
         files: [
             { pattern: 'test-context.js', watched: false }
         ],
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'webpack'],
         preprocessors: {
             'test-context.js': ['webpack']
         },
         webpack: {
             module: {
-                loaders: [
-                    { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' }
-                ]
+                rules: [
+                    {
+                      test: /\.js$/,
+                      exclude: /node_modules/,
+                      use: {
+                        loader: "babel-loader",
+                        options: {
+                          presets: ["@babel/preset-env"],
+                          plugins: ["@babel/plugin-transform-runtime"]
+                        }
+                      }
+                    }
+                  ]
             },
             watch: true
         },

@@ -5,4 +5,3 @@ const articleId = new URLSearchParams(window.location.search).get("articleId");
 getTeddyById(articleId);
 updateCartCounter();
 
-
