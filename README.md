@@ -2,11 +2,10 @@
 
 Projet 5 du parcours développeur web de Openclassrooms.
 
-Pour lancer le projet :
+Pour lancer le site et le server :
 - npm install
-- npm run server
-- npm run dev
+- npm run start
 
-Pour lancer les tests :
+Pour lancer serveur, le projet et les tests :
 - npm install
-- npm run tests
+- npm run dev

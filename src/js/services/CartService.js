@@ -51,14 +51,27 @@ export function checkOut() {
 export function calculateTotal(cart) {
     let totalField = document.querySelector("#total");
     if (cart) {
-        let total = 0;
-        for (const [key, teddy] of Object.entries(cart)) {
-            total += teddy.price * teddy.quantity
-        }
-        totalField.innerHTML = `${total} €`
+        let totalPrice = calculateTotalCartPrice(cart);
+        totalField.innerHTML = `${totalPrice} €`
     } else {
         totalField.innerHTML = ""
     }
+}
+
+function calculateTotalCartPrice(cart) {
+    let totalPrice = 0.00;
+    // for (const [key, teddy] of Object.entries(cart)) {
+    //     totalPrice += teddy.price * teddy.quantity;
+    // }
+    console.log(totalPrice)
+    if (cart != null && typeof cart === "object") {
+        let keys = Object.keys(cart);
+        keys.forEach(key => {
+            totalPrice += cart[key].price * cart[key].quantity;
+        });
+    }
+    console.log(totalPrice)
+    return totalPrice;
 }
 
 export function removeLineFromCart(id) {

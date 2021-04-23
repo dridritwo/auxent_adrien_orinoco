@@ -38,3 +38,5 @@ export let cartWith10Quantity = `{
         "quantity": 4
     }
 }`
+
+export let nullCart = null;

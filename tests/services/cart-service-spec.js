@@ -1,5 +1,5 @@
-import { stringWithoutSpace, getCartSize } from "../../src/js/services/CartService.js";
-import { cartWith10Quantity } from "../data/carts.js"
+import { stringWithoutSpace, getCartSize, calculateTotalCartPrice } from "../../src/js/services/CartService.js";
+import { cartWith10Quantity, nullCart } from "../data/carts.js"
 
 
 describe('stringWithoutSpace', () => {
@@ -38,4 +38,18 @@ describe('getCartSize', () => {
         // assert
         expect(getCartSize(cart)).toBe(0);
     })
+})
+
+
+describe('calculate Total Cart Price', () => {
+    it('should be zero if cart is null', () => {
+        // arrange
+        let cart = nullCart;
+        let parsedCart = JSON.parse(cart);
+        // act 
+
+        // assert
+        expect(calculateTotalCartPrice(parsedCart)).toBe(0.00);
+    })
+
 })
