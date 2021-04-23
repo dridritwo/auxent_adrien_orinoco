@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "compile": "sass --watch src/scss:dist/css",
+    "sass": "sass --watch src/scss:dist/css",
     "tests": "karma start --browsers ChromeHeadless",
     "server": "node server/server",
-    "build": "webpack --mode=production",
-    "prod": "webpack serve --mode=production",
-    "dev": "webpack serve --mode=development"
+    "build-prod": "webpack serve --mode=production --open",
+    "build-css" : "sass src/scss:dist/css",
+    "serve-dev": "webpack serve --mode=development --open",
+    "start": "concurrently \"npm run server\" \"npm run build-css\" \"npm run build-prod\"",
+    "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run serve-dev\" \"npm run tests\""
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +26,7 @@
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
+    "concurrently": "^6.0.2",
     "express": "^4.16.4",
     "jasmine": "^2.2.1",
     "jasmine-core": "^2.2.0",
