@@ -58,7 +58,7 @@ export function calculateTotal(cart) {
     }
 }
 
-function calculateTotalCartPrice(cart) {
+export function calculateTotalCartPrice(cart) {
     let totalPrice = 0.00;
     // for (const [key, teddy] of Object.entries(cart)) {
     //     totalPrice += teddy.price * teddy.quantity;
@@ -70,7 +70,6 @@ function calculateTotalCartPrice(cart) {
             totalPrice += cart[key].price * cart[key].quantity;
         });
     }
-    console.log(totalPrice)
     return totalPrice;
 }
 

@@ -47,9 +47,24 @@ describe('calculate Total Cart Price', () => {
         let cart = nullCart;
         let parsedCart = JSON.parse(cart);
         // act 
-
         // assert
         expect(calculateTotalCartPrice(parsedCart)).toBe(0.00);
+    })
+    it('should be return a number', () => {
+        // arrange
+        let cart = nullCart;
+        let parsedCart = JSON.parse(cart);
+        // act 
+        // assert
+        expect(typeof calculateTotalCartPrice(parsedCart)).toBe("number");
+    })
+    it('qty10cart should return', () => {
+        // arrange
+        let cart = cartWith10Quantity;
+        let parsedCart = JSON.parse(cart);
+        // act 
+        // assert
+        expect(calculateTotalCartPrice(parsedCart)).toBe(44000);
     })
 
 })

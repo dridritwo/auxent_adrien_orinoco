@@ -3,8 +3,18 @@ import {addToCart} from "./CartService.js";
 export async function getTeddiesListIntoContainer(querySelector) {
     let teddies = await fetch("http://localhost:3000/api/teddies/").then((response) => {
         return response.json()
+    }).then((json) => {
+        json = translateToEuroWithTwoDecimals(json);
+        return json
     });
     createCardList(querySelector, teddies);
+}
+
+export function translateToEuroWithTwoDecimals(json) {
+    json.forEach(teddy => {
+        teddy.price = (teddy.price / 100).toFixed(2);
+    });
+    return json;
 }
 
 export function createCardList(querySelector, teddies) {
