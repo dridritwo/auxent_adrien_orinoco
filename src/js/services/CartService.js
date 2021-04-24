@@ -63,7 +63,6 @@ export function calculateTotalCartPrice(cart) {
     // for (const [key, teddy] of Object.entries(cart)) {
     //     totalPrice += teddy.price * teddy.quantity;
     // }
-    console.log(totalPrice)
     if (cart != null && typeof cart === "object") {
         let keys = Object.keys(cart);
         keys.forEach(key => {

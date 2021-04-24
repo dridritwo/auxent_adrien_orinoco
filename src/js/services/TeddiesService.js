@@ -4,17 +4,17 @@ export async function getTeddiesListIntoContainer(querySelector) {
     let teddies = await fetch("http://localhost:3000/api/teddies/").then((response) => {
         return response.json()
     }).then((json) => {
-        json = translateToEuroWithTwoDecimals(json);
+        json.forEach(teddy => {
+            teddy = placeDecimal(teddy);
+        });
         return json
     });
     createCardList(querySelector, teddies);
 }
 
-export function translateToEuroWithTwoDecimals(json) {
-    json.forEach(teddy => {
-        teddy.price = (teddy.price / 100).toFixed(2);
-    });
-    return json;
+export function placeDecimal(teddy) {
+    teddy.price = (teddy.price / 100).toFixed(2);
+    return teddy
 }
 
 export function createCardList(querySelector, teddies) {
@@ -95,8 +95,9 @@ export function getTeddyById(id) {
     fetch(`http://localhost:3000/api/teddies/${id}`).then((response) => {
     return response.json()
 }).then((teddy) => {
+    teddy = placeDecimal(teddy)
     createTeddyView(teddy);
-})
+});
 }
 
 function createTeddyView(teddy) {
