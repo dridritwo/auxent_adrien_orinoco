@@ -1,3 +1,4 @@
+import '../scss/style.scss'
 import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, calculateTotal, addOneToCart, removeOneFromCart, checkOut, getCart } from "./services/CartService.js"
 let tableBody = document.querySelector("#cart-list-body");
 let cart = getCart();

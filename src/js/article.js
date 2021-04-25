@@ -1,3 +1,4 @@
+import '../scss/style.scss'
 import { getTeddyById } from "./services/TeddiesService.js";
 import { updateCartCounter } from "./services/CartService.js";
 
