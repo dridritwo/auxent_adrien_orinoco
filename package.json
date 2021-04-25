@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev-vite": "vite",
+    "dev-vite": "concurrently \"npm run server\" \"vite --port 3001\"",
     "build-vite": "vite build",
+    "preview-vite": "concurrently \"npm run server\" \"vite preview --port 8080\"",
     "sass": "sass --watch src/scss:dist/css",
     "tests": "karma start --browsers ChromeHeadless",
     "server": "node server/server",
