@@ -3,18 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev-vite": "concurrently \"npm run server\" \"vite --port 3001\"",
-    "build-vite": "vite build",
-    "preview-vite": "concurrently \"npm run server\" \"vite preview --port 8080\"",
-    "sass": "sass --watch src/scss:dist/css",
+    "dev": "concurrently \"npm run server\" \"vite --port 3001\"",
+    "build": "vite build",
+    "preview": "concurrently \"npm run server\" \"vite preview --port 8080\"",
     "tests": "karma start --browsers ChromeHeadless",
-    "server": "node server/server",
-    "build-js": "webpack --mode=production",
-    "build-prod": "webpack serve --mode=production --open",
-    "build-css": "sass src/scss:dist/css",
-    "serve-dev": "webpack serve --mode=development --open",
-    "start": "concurrently \"npm run server\" \"npm run build-css\" \"npm run build-prod\"",
-    "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run serve-dev\" \"npm run tests\""
+    "server": "node server/server"
   },
   "author": "",
   "license": "ISC",
