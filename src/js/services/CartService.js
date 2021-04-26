@@ -40,7 +40,7 @@ export function removeOneFromCart(productKey) {
 export function clearCart() {
     window.localStorage.clear();
     updateCartCounter();
-    calculateTotal();
+    displayTotal(calculateTotalCartPrice());
 }
 
 export function checkOut() {
@@ -48,14 +48,10 @@ export function checkOut() {
     console.log("cart", cart)
 }
 
-export function calculateTotal(cart) {
+
+export function displayTotal(total) {
     let totalField = document.querySelector("#total");
-    if (cart) {
-        let totalPrice = calculateTotalCartPrice(cart).toFixed(2);
-        totalField.innerHTML = `${totalPrice} €`
-    } else {
-        totalField.innerHTML = ""
-    }
+    totalField.innerHTML = `${total} €`;
 }
 
 export function calculateTotalCartPrice(cart) {
@@ -66,7 +62,7 @@ export function calculateTotalCartPrice(cart) {
             totalPrice += cart[key].price * cart[key].quantity;
         });
     }
-    return totalPrice;
+    return totalPrice.toFixed(2);
 }
 
 export function removeLineFromCart(id) {
@@ -79,12 +75,8 @@ export function removeLineFromCart(id) {
 }
 
 export function updateCartCounter() {
-    let cartCounter = document.querySelector("#cart-counter");
-    let cart = getCart();
-    let quantitySum = getCartSize(cart);
-    if (cartCounter) {
-        cartCounter.innerText = quantitySum;
-    }
+    let cartSize = getCartSize(getCart());
+    document.querySelector("#cart-counter").innerText = cartSize;
 }
 
 export function getCart() {

@@ -66,5 +66,4 @@ describe('calculate Total Cart Price', () => {
         // assert
         expect(calculateTotalCartPrice(parsedCart)).toBe(440.00);
     })
-
 })

@@ -1,10 +1,10 @@
 import '../scss/style.scss'
-import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, calculateTotal, addOneToCart, removeOneFromCart, checkOut, getCart } from "./services/CartService.js"
+import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, displayTotal, addOneToCart, removeOneFromCart, checkOut, getCart, calculateTotalCartPrice } from "./services/CartService.js"
 let tableBody = document.querySelector("#cart-list-body");
 let cart = getCart();
 
 buildCartList(cart);
-calculateTotal(cart);
+displayTotal(calculateTotalCartPrice(cart));
 updateCartCounter()
 
 
@@ -27,21 +27,22 @@ function buildCartList(cart) {
                 <h4 class="media-heading"><a href="./article.html?articleId=${teddy._id}">${teddy.name}</a></h4>
                 
             </div>
-        </div></td>
+        </div>
+        </td>
         
         <td class="col-sm-1 col-md-1" style="text-align: center">
         ${teddy.color}
         </td>
         <td class="col-sm-1 col-md-1" style="text-align: center">
-        <button id="add-one-to-cart-${teddy._id}-${colorWithoutSpace}" type="button" class="btn btn-danger add-button"><span>+</span></button>
+        <button id="add-one-to-cart-${teddy._id}-${colorWithoutSpace}" type="button" class="btn btn-danger add-button p-3"><span>+</span></button>
         ${teddy.quantity}
-        <button type="button" class="btn btn-primary add-button" id="remove-one-from-cart-${teddy._id}-${colorWithoutSpace}"><span>-</span></button>
+        <button type="button" class="btn btn-primary add-button p-3" id="remove-one-from-cart-${teddy._id}-${colorWithoutSpace}"><span>-</span></button>
         </td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${teddy.price} €</strong></td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${lineTotalWithDecimals} €</strong></td>
         <td class="col-sm-1 col-md-1">
         <button type="button" id="remove-btn-${teddy._id}-${colorWithoutSpace}" class="btn btn-danger">
-             Remove
+             Retirer
         </button></td>
     `;
     tableBody.appendChild(tr)
@@ -51,7 +52,7 @@ function buildCartList(cart) {
         let newCart = removeLineFromCart(`${teddy._id}-${colorWithoutSpace}`);
         tableBody.innerHTML = "";
         buildCartList(newCart);
-        calculateTotal(newCart);
+        displayTotal(calculateTotalCartPrice(newCart));
     });
 
     // add one of selected to cart
@@ -59,7 +60,7 @@ function buildCartList(cart) {
         let newCart = addOneToCart(`${teddy._id}-${colorWithoutSpace}`);
         tableBody.innerHTML = "";
         buildCartList(newCart);
-        calculateTotal(newCart);
+        displayTotal(calculateTotalCartPrice(newCart));
     });
     
     // remove one of selected from cart
@@ -67,7 +68,7 @@ function buildCartList(cart) {
         let newCart = removeOneFromCart(`${teddy._id}-${colorWithoutSpace}`);
         tableBody.innerHTML = "";
         buildCartList(newCart);
-        calculateTotal(newCart);
+        displayTotal(calculateTotalCartPrice(newCart));
     });
 
 };
@@ -76,6 +77,5 @@ function buildCartList(cart) {
 
 // finaliser l'achat
 document.querySelector("#finaliser-achat").addEventListener("click", () => {
-    console.log("here")
     checkOut();
 });
