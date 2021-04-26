@@ -51,7 +51,7 @@ export function checkOut() {
 export function calculateTotal(cart) {
     let totalField = document.querySelector("#total");
     if (cart) {
-        let totalPrice = calculateTotalCartPrice(cart);
+        let totalPrice = calculateTotalCartPrice(cart).toFixed(2);
         totalField.innerHTML = `${totalPrice} €`
     } else {
         totalField.innerHTML = ""
@@ -60,9 +60,6 @@ export function calculateTotal(cart) {
 
 export function calculateTotalCartPrice(cart) {
     let totalPrice = 0.00;
-    // for (const [key, teddy] of Object.entries(cart)) {
-    //     totalPrice += teddy.price * teddy.quantity;
-    // }
     if (cart != null && typeof cart === "object") {
         let keys = Object.keys(cart);
         keys.forEach(key => {

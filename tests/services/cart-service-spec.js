@@ -64,7 +64,7 @@ describe('calculate Total Cart Price', () => {
         let parsedCart = JSON.parse(cart);
         // act 
         // assert
-        expect(calculateTotalCartPrice(parsedCart)).toBe(44000);
+        expect(calculateTotalCartPrice(parsedCart)).toBe(440.00);
     })
 
 })
