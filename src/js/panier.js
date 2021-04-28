@@ -34,9 +34,9 @@ function buildCartList(cart) {
         ${teddy.color}
         </td>
         <td class="col-sm-1 col-md-1" style="text-align: center">
-        <button id="add-one-to-cart-${teddy._id}-${colorWithoutSpace}"  class="btn btn-primary add-button p-3"><span>+</span></button>
+        <button id="add-one-to-cart-${teddy._id}-${colorWithoutSpace}"  class="btn btn-primary add-button p-4"><span>+</span></button>
         ${teddy.quantity}
-        <button  class="btn btn-danger add-button p-3" id="remove-one-from-cart-${teddy._id}-${colorWithoutSpace}"><span>-</span></button>
+        <button  class="btn btn-danger add-button p-4" id="remove-one-from-cart-${teddy._id}-${colorWithoutSpace}"><span>-</span></button>
         </td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${teddy.price} €</strong></td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${lineTotalWithDecimals} €</strong></td>
