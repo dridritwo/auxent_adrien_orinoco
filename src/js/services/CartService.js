@@ -13,27 +13,22 @@ export function addToCart(teddy) {
         cart[productKey] = teddy;
     }
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    
     updateCartCounter()
 };
 
-export function addOneToCart(productKey) {
-    let cart = getCart();
+export function addOneToCart(productKey, cart) {
     cart[productKey].quantity += 1;
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter()
     return cart;
 };
 
-export function removeOneFromCart(productKey) {
-    let cart = getCart();
+export function removeOneFromCart(productKey, cart) {
     if (cart[productKey].quantity > 1) {
         cart[productKey].quantity -= 1;
     } else {
         delete cart[productKey];
     }
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter()
     return cart;
 };
 
@@ -70,13 +65,13 @@ export function removeLineFromCart(id) {
     delete cartToSlim[id];
     
     window.localStorage.setItem('cart', JSON.stringify(cartToSlim));
-    updateCartCounter()
+    
     return cartToSlim;
 }
 
 export function updateCartCounter() {
     let cartSize = getCartSize(getCart());
-    document.querySelector("#cart-counter").innerText = cartSize;
+    document.querySelector("#cart-counter") ? document.querySelector("#cart-counter").innerText = cartSize : "";
 }
 
 export function getCart() {

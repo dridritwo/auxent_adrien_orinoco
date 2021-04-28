@@ -51,7 +51,7 @@ function createBearCard(teddy) {
     let link = document.createElement("a");
     link.href = `./article.html?articleId=${id}`;
     link.classList.add("stretched-link")
-    let title = document.createElement("h5")
+    let title = document.createElement("h2")
     title.append(name)
     link.append(title)
     cardBody.append(link)
@@ -78,17 +78,7 @@ function createBearCard(teddy) {
     cardBody.append(prix);
 
     card.append(cardBody);
-
-    let cardTemplate = `<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>`
     return card
-
 }
 
 export function getTeddyById(id) {
@@ -102,23 +92,26 @@ export function getTeddyById(id) {
 
 function createTeddyView(teddy) {
     let main = document.querySelector("main");
-    main.innerHTML = `<div class="card flex-md-row mt-4 mb-4 box-shadow h-md-250 w-75 mw-100 mx-auto">
-    <img loading="lazy" class="card-img-left flex-auto d-md-block w-100 w-md-50"  alt="article image"  src="${teddy.imageUrl}" >
-    <div class="card-body d-flex flex-column align-items-start">
-      <h3 class="mb-0">
-        ${teddy.name}
-      </h3>
-      <div class="mb-1 text-muted">${teddy.price} €</div>
-      <div class="input-group my-3 p-0 col-sm-3 col-md-3">
-            <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor-${teddy._id}">
-                
-            </select>
+    main.innerHTML = `
+    <div class="card flex-md-row mt-4 mb-4 box-shadow h-md-250 w-75 mw-100 mx-auto article">
+        <div class="article--thumbnail pull-left w-100">
+            <img loading="lazy" class="media-object article--img"  alt="article image ${teddy.name}"  src="${teddy.imageUrl}" >
         </div>
-      <p class="card-text mb-auto">${teddy.description}</p>
-      <button id="teddy-article" class="btn btn-rounded bg-primary text-white my-3 mx-auto">Ajouter au panier</button>
-      
-    </div>
-  </div>`;
+        <div class="card-body d-flex flex-column align-items-start">
+        <h2 class="mb-0">
+            ${teddy.name}
+        </h2>
+        <div class="mb-1 text-muted">${teddy.price} €</div>
+        <div class="input-group my-3 ">
+                <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor-${teddy._id}">
+                    
+                </select>
+            </div>
+        <p class="card-text mb-auto">${teddy.description}</p>
+        <button id="teddy-article" class="btn btn-rounded bg-primary text-white my-3 mx-auto">Ajouter au panier</button>
+        
+        </div>
+    </div>`;
   let inputGroupSelectColor = document.querySelector(`#inputGroupSelectColor-${teddy._id}`);
     teddy.colors.forEach(color => {
         let option = document.createElement("option");

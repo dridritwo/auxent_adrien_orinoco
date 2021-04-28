@@ -24,7 +24,7 @@ export let cartWith10Quantity = `{
         "price": 39.00,
         "imageUrl": "http://localhost:3000/images/teddy_2.jpg",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "quantity": 3
+        "quantity": 1
     },
     "5be9c8541c9d440000665243-Tan": {
         "colors": [
@@ -38,5 +38,6 @@ export let cartWith10Quantity = `{
         "quantity": 4
     }
 }`
+
 
 export let nullCart = null;
