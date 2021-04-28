@@ -38,17 +38,9 @@ export function clearCart() {
     displayTotal(calculateTotalCartPrice());
 }
 
-export function checkOut(client) {
-    console.log("client", client)
-    
-        // fetch('https://httpbin.org/post', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(client)
-        // });
+export function checkOut({firstName, lastName, email, address, city}) {
+    window.location.href = `./recept.html?firstName=${firstName}&lastName=${lastName}&email=${email}&address=${address}&city=${city}
+    `;
 }
 
 export function getProductList(cart) {
@@ -67,7 +59,7 @@ export function getProductList(cart) {
 
 export function displayTotal(total) {
     let totalField = document.querySelector("#total");
-    totalField.innerHTML = `${total} €`;
+    totalField ? totalField.innerHTML = `${total} €`: "";
 }
 
 export function calculateTotalCartPrice(cart) {

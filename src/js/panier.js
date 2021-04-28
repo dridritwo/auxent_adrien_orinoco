@@ -1,5 +1,6 @@
+import { get } from 'mongoose';
 import '../scss/style.scss'
-import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, displayTotal, addOneToCart, removeOneFromCart, checkOut, getCart, calculateTotalCartPrice, getProductList } from "./services/CartService.js"
+import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, displayTotal, addOneToCart, removeOneFromCart, checkOut, getCart, calculateTotalCartPrice, getCartSize } from "./services/CartService.js"
 let tableBody = document.querySelector("#cart-list-body");
 let cart = getCart();
 
@@ -80,8 +81,10 @@ function buildCartList(cart) {
 
 // finaliser l'achat
 document.querySelector("#finaliser-achat").addEventListener("click", () => {
-    document.querySelector('#cart-form').classList.remove("hidden")
-    document.querySelector('#btn-summary').classList.add("hidden")
+    if (getCartSize(getCart()) > 0) {
+        document.querySelector('#cart-form').classList.remove("hidden")
+        document.querySelector('#btn-summary').classList.add("hidden")
+    }
 });
 document.querySelector("#return").addEventListener("click", () => {
     document.querySelector('#cart-form').classList.add("hidden")
@@ -96,20 +99,26 @@ form.addEventListener('submit', function(event) {
     if (form.checkValidity() === false) {
     event.preventDefault();
     event.stopPropagation();
-}
-    event.preventDefault(); 
     form.classList.add('was-validated');
-    // let products = getProductList(getCart());
-    // console.log("products", products)
-    let contact = {
-        firstName: document.querySelector("#firstName").value,
-        lastName: document.querySelector("#lastName").value,
-        email: document.querySelector("#email").value,
-        address: document.querySelector("#address").value,
-        city: document.querySelector("#city").value,
-        products: getProductList(getCart())
+} else {
+    event.preventDefault(); 
+    
+    if (getCartSize(getCart())) {
+
+        let contact = {
+            firstName: document.querySelector("#firstName").value,
+            lastName: document.querySelector("#lastName").value,
+            email: document.querySelector("#email").value,
+            address: document.querySelector("#address").value,
+            city: document.querySelector("#city").value
+        }
+        
+        checkOut(contact);
+    } else {
+        form.classList.add('was-validated');
+        document.querySelector("#panier-vide").classList.remove("hidden")
     }
-    checkOut(contact);
+}
 }, false);
 });
 
