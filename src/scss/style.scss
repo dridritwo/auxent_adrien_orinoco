@@ -97,3 +97,12 @@
     }
     
 }
+
+.hidden {
+    display: none;
+}
+
+.input:invalid {
+    background-color: red;
+    color: red;
+}

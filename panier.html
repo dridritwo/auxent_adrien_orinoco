@@ -64,19 +64,63 @@
           </table>
         </div>
       </div>
-      <div class="summary float-right p-2">
+      <div id="summary" class="summary container-fluid p-2">
         <h2>Total</h2>
         <h2><strong id="total"></strong></h2>
-        <a href="./index.html" class="btn btn-default bg-secondary text-white">
-          Continuer mes achats
-        </a>
-        <button id="finaliser-achat" class="btn btn-success my-2">
-          Finaliser l'achat
-        </button>
+        <div id="btn-summary">
+          <a href="./index.html" class="btn btn-default bg-secondary text-white btn-summary">
+            Continuer mes achats
+          </a>
+          <button id="finaliser-achat" class="btn btn-success my-2 btn-summary">
+            Finaliser l'achat
+          </button>
+        </div>
+        
       </div>
+
+    <form id="cart-form" class="hidden needs-validation" novalidate>
+        <div class="form-group">
+          <label for="firstName">Nom</label>
+          <input required type="text" class="form-control" id="firstName" placeholder="Entrer votre nom">
+          
+          <div class="invalid-feedback">
+            Veuiller entrer votre nom.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Prénom</label>
+          <input required type="text" class="form-control" id="lastName" placeholder="Entrer votre prénom">
+          <div class="invalid-feedback">
+            Veuiller entrer votre prénom.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input required type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <div class="invalid-feedback">
+            Veuiller entrer un email valide.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Adresse</label>
+          <input required type="text" class="form-control" id="address" placeholder="Entrer votre adresse">
+          <div class="invalid-feedback">
+            Veuiller entrer votre adresse.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city">Ville</label>
+          <input required type="text" class="form-control" id="city" placeholder="Entrer votre ville">
+          <div class="invalid-feedback">
+            Veuiller entrer votre ville.
+          </div>
+        </div>
+        <button id="return" class="btn btn-danger mr-3 mb-5">Fermer</button>
+        <button id="btn-checkout" type="submit" class="btn btn-success mr-3 mb-5 px-5">Acheter</button>
+      </form>
+
     </div>
 
-    
 
   </main>
 

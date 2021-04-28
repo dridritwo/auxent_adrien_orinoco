@@ -38,9 +38,30 @@ export function clearCart() {
     displayTotal(calculateTotalCartPrice());
 }
 
-export function checkOut() {
-    let cart = getCart();
-    console.log("cart", cart)
+export function checkOut(client) {
+    console.log("client", client)
+    
+        // fetch('https://httpbin.org/post', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify(client)
+        // });
+}
+
+export function getProductList(cart) {
+    let productList = [];
+    if (cart != null && typeof cart === "object") {
+        let keys = Object.keys(cart);
+        keys.forEach(key => {
+            for (let index = 0; index < cart[key].quantity; index++) {
+                productList.push(cart[key]._id)
+            }
+        });
+    }
+    return productList
 }
 
 

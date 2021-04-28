@@ -1,8 +1,11 @@
 import {addToCart} from "./CartService.js";
 
 export async function getTeddiesListIntoContainer(querySelector) {
+
     let teddies = await fetch("http://localhost:3000/api/teddies/").then((response) => {
         return response.json()
+    }, (error) => {
+        console.log(error)
     }).then((json) => {
         json.forEach(teddy => {
             teddy = placeDecimal(teddy);
