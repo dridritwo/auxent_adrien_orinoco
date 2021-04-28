@@ -4,5 +4,4 @@ import {updateCartCounter} from "./services/CartService.js"
 
 
 getTeddiesListIntoContainer("#bears-list");
-
 updateCartCounter();

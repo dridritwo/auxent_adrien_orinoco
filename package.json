@@ -11,7 +11,7 @@
     "build-css": "sass src/scss:dist/css",
     "serve-dev": "webpack serve --mode=development --open",
     "start": "concurrently \"npm run server\" \"npm run build-css\" \"npm run build-prod\"",
-    "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run serve-dev\" \"npm run tests\""
+    "dev": "concurrently \"npm run server\" \"npm run serve-dev\""
   },
   "author": "",
   "license": "ISC",
