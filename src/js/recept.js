@@ -44,7 +44,7 @@ async function postContact(contact, products){
 export function buildReceipt(response) {
     let receiptContainer = document.querySelector("#receipt-container");
     receiptContainer.innerHTML = `
-    <div id="recept-header" class="card-header">
+    <div id="receipt-header" class="card-header">
     <div> <b> Nom :</b>  <span id="receipt-first-name">${response.contact.firstName}</span></div>
     <div> <b> Prénom :</b>  <span id="receipt-last-name">${response.contact.lastName}</span></div>
     <div> <b> email :</b>  <span id="receipt-email">${response.contact.email}</span></div>
@@ -54,7 +54,7 @@ export function buildReceipt(response) {
     </div>
     <ul id="receipt-list-group" class="list-group list-group-flush">
     </ul>
-    <div id="receipt-footer card-footer">
+    <div id="receipt-footer">
     <div class="p-3">
     <b> Total  : <span id="receipt-total">Total</span> </b>
     </div>

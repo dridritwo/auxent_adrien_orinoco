@@ -40,13 +40,15 @@ function createBearCard(teddy) {
     card.classList.add("card");
     card.style.width = "250px";
 
+    let imageContainer = document.createElement("div");
+    imageContainer.classList.add("card-img-container");
     let image = document.createElement("img");
     image.classList.add("card-img-top");
-    image.classList.add("h180");
     image.src = imgUrl;
-    image.alt = `Image de l'ourson nommé ${name}`
+    image.alt = `Image de l'ourson nommé ${name}`;
 
-    card.append(image)
+    imageContainer.append(image);
+    card.append(imageContainer);
 
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -101,9 +103,9 @@ function createTeddyView(teddy) {
             <img loading="lazy" class="media-object article--img"  alt="article image ${teddy.name}"  src="${teddy.imageUrl}" >
         </div>
         <div class="card-body d-flex flex-column align-items-start">
-        <h2 class="mb-0">
+        <h1 class="mb-0 text-secondary">
             ${teddy.name}
-        </h2>
+        </h1>
         <div class="mb-1 text-muted">${teddy.price} €</div>
         <div class="input-group my-3 ">
                 <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor-${teddy._id}">
@@ -123,12 +125,18 @@ function createTeddyView(teddy) {
         inputGroupSelectColor.append(option);
     });
     document.querySelector(`#teddy-article`).addEventListener('click', () => {
-        
         teddy.color = inputGroupSelectColor.value;
         addToCart(teddy);
-        
+        wiggleCart();
     })
 }
 
-
+export function wiggleCart() {
+    document.querySelector("#cart-svg").classList.add("wiggle-cart");
+    document.querySelector("#cart-counter").classList.add("wiggle-cart");
+    setTimeout(() => {  
+        document.querySelector("#cart-counter").classList.remove("wiggle-cart"); 
+        document.querySelector("#cart-svg").classList.remove("wiggle-cart"); 
+    }, 200);
+}
 

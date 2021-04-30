@@ -1,6 +1,7 @@
 import { get } from 'mongoose';
 import '../scss/style.scss'
-import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, displayTotal, addOneToCart, removeOneFromCart, checkOut, getCart, calculateTotalCartPrice, getCartSize } from "./services/CartService.js"
+import { clearCart, removeLineFromCart, updateCartCounter, stringWithoutSpace, displayTotal, addOneToCart, removeOneFromCart, checkOut, getCart, calculateTotalCartPrice, getCartSize } from "./services/CartService.js";
+import { wiggleCart } from "./services/TeddiesService";
 let tableBody = document.querySelector("#cart-list-body");
 let cart = getCart();
 
@@ -12,6 +13,7 @@ updateCartCounter()
 document.querySelector("#clear-cart").addEventListener("click", () => {
  clearCart();
  tableBody.innerHTML = "";
+ wiggleCart();
 })
 
 function buildCartList(cart) {
@@ -55,6 +57,7 @@ function buildCartList(cart) {
         buildCartList(newCart);
         displayTotal(calculateTotalCartPrice(newCart));
         updateCartCounter();
+        wiggleCart();
     });
 
     // add one of selected to cart
@@ -64,6 +67,7 @@ function buildCartList(cart) {
         buildCartList(newCart);
         displayTotal(calculateTotalCartPrice(newCart));
         updateCartCounter();
+        wiggleCart();
     });
     
     // remove one of selected from cart
@@ -73,6 +77,7 @@ function buildCartList(cart) {
         buildCartList(newCart);
         displayTotal(calculateTotalCartPrice(newCart));
         updateCartCounter();
+        wiggleCart();
     });
 
 };
