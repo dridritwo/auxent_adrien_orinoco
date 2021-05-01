@@ -68,14 +68,16 @@ function createBearCard(teddy) {
     let colorsDiv = document.createElement("div");
     colorsDiv.classList.add("d-flex");
     colorsDiv.classList.add("gap");
-    colorsDiv.textContent = "Couleurs : ";
     colors.forEach(color => {
         let colorDiv = document.createElement("div");
         colorDiv.classList.add("color");
         colorDiv.style.backgroundColor = color;
         colorsDiv.appendChild(colorDiv);
     });
-    cardBody.append(colorsDiv);
+    let colorsDivContainer = document.createElement("div");
+    colorsDivContainer.textContent = "Couleurs : ";
+    colorsDivContainer.append(colorsDiv);
+    cardBody.append(colorsDivContainer);
 
     let prix = document.createElement("span")
     prix.append(`${price} €`)
