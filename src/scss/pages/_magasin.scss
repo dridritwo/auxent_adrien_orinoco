@@ -22,3 +22,21 @@
     border-radius: 10px;
     border: none;
 }
+
+#bears-list {
+    
+    .card {
+        border: 2px rgba(255, 255, 255, 0) solid;
+        transition: all 0.2s ease-in-out;
+        &:focus, &:hover {
+            border: 2px $primary solid;
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
+
+.stretched-link {
+    &::after {
+        pointer-events: visible;
+    }
+}
