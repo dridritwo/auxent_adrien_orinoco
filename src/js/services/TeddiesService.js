@@ -2,7 +2,7 @@ import {addToCart} from "./CartService.js";
 
 export async function getTeddiesListIntoContainer(querySelector) {
 
-    let teddies = await fetch("http://localhost:3000/api/teddies/").then((response) => {
+    let teddies = await fetch("https://oniroco-back.herokuapp.com/api/teddies/").then((response) => {
         return response.json()
     }, (error) => {
         console.log(error)
@@ -89,7 +89,7 @@ function createBearCard(teddy) {
 }
 
 export function getTeddyById(id) {
-    fetch(`http://localhost:3000/api/teddies/${id}`).then((response) => {
+    fetch(`https://oniroco-back.herokuapp.com/api/teddies/${id}`).then((response) => {
     return response.json()
 }).then((teddy) => {
     teddy = placeDecimal(teddy)
