@@ -7,8 +7,7 @@
     "build": "vite build",
     "preview": "concurrently \"npm run server\" \"vite preview --port 8080\"",
     "tests": "karma start --browsers ChromeHeadless",
-    "server": "node server/server",
-    "start": "vite"
+    "server": "node server/server"
   },
   "author": "",
   "license": "ISC",
