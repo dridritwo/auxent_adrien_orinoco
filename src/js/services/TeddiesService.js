@@ -89,7 +89,7 @@ function createBearCard(teddy) {
 }
 
 export function getTeddyById(id) {
-    fetch(`https://oniroco-back.herokuapp.com/api/teddies/${id}`).then((response) => {
+    fetch(`http://localhost:3000/api/teddies/${id}`).then((response) => {
     return response.json()
 }).then((teddy) => {
     teddy = placeDecimal(teddy)
