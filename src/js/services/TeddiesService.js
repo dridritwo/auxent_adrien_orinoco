@@ -2,7 +2,7 @@ import {addToCart} from "./CartService.js";
 
 export async function getTeddiesListIntoContainer(querySelector) {
 
-    let teddies = await fetch("https://oniroco-back.herokuapp.com/api/teddies/").then((response) => {
+    let teddies = await fetch("http://localhost:3000/api/teddies/").then((response) => {
         return response.json()
     }, (error) => {
         console.log(error)
