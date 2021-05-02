@@ -89,6 +89,9 @@ document.querySelector("#finaliser-achat").addEventListener("click", () => {
     if (getCartSize(getCart()) > 0) {
         document.querySelector('#cart-form').classList.remove("hidden")
         document.querySelector('#btn-summary').classList.add("hidden")
+        document.querySelector("#firstName").scrollIntoView({
+            behavior: 'smooth'
+          });
     }
 });
 document.querySelector("#return").addEventListener("click", () => {
