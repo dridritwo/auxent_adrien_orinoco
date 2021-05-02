@@ -13,63 +13,64 @@ export function addToCart(teddy) {
         cart[productKey] = teddy;
     }
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    
     updateCartCounter()
 };
 
-export function addOneToCart(productKey) {
-    let cart = getCart();
+export function addOneToCart(productKey, cart) {
     cart[productKey].quantity += 1;
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter()
     return cart;
 };
 
-export function removeOneFromCart(productKey) {
-    let cart = getCart();
+export function removeOneFromCart(productKey, cart) {
     if (cart[productKey].quantity > 1) {
         cart[productKey].quantity -= 1;
     } else {
         delete cart[productKey];
     }
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter()
     return cart;
 };
 
 export function clearCart() {
     window.localStorage.clear();
     updateCartCounter();
-    calculateTotal();
+    displayTotal(calculateTotalCartPrice());
 }
 
-export function checkOut() {
-    let cart = getCart();
-    console.log("cart", cart)
+export function checkOut({firstName, lastName, email, address, city}) {
+    window.location.href = `./recept.html?firstName=${firstName}&lastName=${lastName}&email=${email}&address=${address}&city=${city}
+    `;
 }
 
-export function calculateTotal(cart) {
-    let totalField = document.querySelector("#total");
-    if (cart) {
-        let totalPrice = calculateTotalCartPrice(cart);
-        totalField.innerHTML = `${totalPrice} €`
-    } else {
-        totalField.innerHTML = ""
+export function getProductList(cart) {
+    let productList = [];
+    if (cart != null && typeof cart === "object") {
+        let keys = Object.keys(cart);
+        keys.forEach(key => {
+            for (let index = 0; index < cart[key].quantity; index++) {
+                productList.push(cart[key]._id)
+            }
+        });
     }
+    return productList
+}
+
+
+export function displayTotal(total) {
+    let totalField = document.querySelector("#total");
+    totalField ? totalField.innerHTML = `${total} €`: "";
 }
 
 export function calculateTotalCartPrice(cart) {
     let totalPrice = 0.00;
-    // for (const [key, teddy] of Object.entries(cart)) {
-    //     totalPrice += teddy.price * teddy.quantity;
-    // }
     if (cart != null && typeof cart === "object") {
         let keys = Object.keys(cart);
         keys.forEach(key => {
             totalPrice += cart[key].price * cart[key].quantity;
         });
     }
-    return totalPrice;
+    return totalPrice.toFixed(2);
 }
 
 export function removeLineFromCart(id) {
@@ -77,17 +78,13 @@ export function removeLineFromCart(id) {
     delete cartToSlim[id];
     
     window.localStorage.setItem('cart', JSON.stringify(cartToSlim));
-    updateCartCounter()
+    
     return cartToSlim;
 }
 
 export function updateCartCounter() {
-    let cartCounter = document.querySelector("#cart-counter");
-    let cart = getCart();
-    let quantitySum = getCartSize(cart);
-    if (cartCounter) {
-        cartCounter.innerText = quantitySum;
-    }
+    let cartSize = getCartSize(getCart());
+    document.querySelector("#cart-counter") ? document.querySelector("#cart-counter").innerText = cartSize : "";
 }
 
 export function getCart() {

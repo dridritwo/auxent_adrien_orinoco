@@ -1,0 +1,17 @@
+
+.article {
+    &--thumbnail {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        .article--img {
+            object-fit: cover;
+            width: 100%;
+            min-height: 320px;
+
+        }
+    }
+    
+}

@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "sass": "sass --watch src/scss:dist/css",
+    "dev": "concurrently \"npm run server\" \"vite --port 3001\"",
+    "build": "vite build",
+    "preview": "concurrently \"npm run server\" \"vite preview --port 8080\"",
     "tests": "karma start --browsers ChromeHeadless",
     "server": "node server/server",
-    "build-js": "webpack --mode=production",
-    "build-prod": "webpack serve --mode=production --open",
-    "build-css": "sass src/scss:dist/css",
-    "serve-dev": "webpack serve --mode=development --open",
-    "start": "concurrently \"npm run server\" \"npm run build-css\" \"npm run build-prod\"",
-    "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run serve-dev\" \"npm run tests\""
+    "start": "vite"
   },
   "author": "",
   "license": "ISC",
@@ -40,7 +37,9 @@
     "mongoose": "^5.3.8",
     "mongoose-unique-validator": "^2.0.2",
     "nodemon": "^2.0.7",
+    "sass": "^1.32.11",
     "uuid": "^3.3.2",
+    "vite": "^2.2.3",
     "webpack": "^5.35.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"

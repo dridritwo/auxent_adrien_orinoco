@@ -1,0 +1,18 @@
+#receipt-footer {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid black;
+}
+
+#receipt-order-id {
+    background-color: $primary;
+    color: white;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+}
+
+#receipt-header {
+    div:last-child{
+        margin-top: 10px;
+    }
+}

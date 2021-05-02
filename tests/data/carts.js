@@ -8,7 +8,7 @@ export let cartWith10Quantity = `{
         ],
         "_id": "5be9c8541c9d440000665243",
         "name": "Norbert",
-        "price": 2900,
+        "price": 29.00,
         "imageUrl": "http://localhost:3000/images/teddy_1.jpg",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "quantity": 3
@@ -21,10 +21,10 @@ export let cartWith10Quantity = `{
         ],
         "_id": "5beaa8bf1c9d440000a57d94",
         "name": "Arnold",
-        "price": 3900,
+        "price": 39.00,
         "imageUrl": "http://localhost:3000/images/teddy_2.jpg",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "quantity": 3
+        "quantity": 1
     },
     "5be9c8541c9d440000665243-Tan": {
         "colors": [
@@ -32,11 +32,12 @@ export let cartWith10Quantity = `{
         ],
         "_id": "5beaaa8f1c9d440000a57d95",
         "name": "Lenny and Carl",
-        "price": 5900,
+        "price": 59.00,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "imageUrl": "http://localhost:3000/images/teddy_3.jpg",
         "quantity": 4
     }
 }`
+
 
 export let nullCart = null;

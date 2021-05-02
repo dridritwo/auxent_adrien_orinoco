@@ -1,8 +1,11 @@
 import {addToCart} from "./CartService.js";
 
 export async function getTeddiesListIntoContainer(querySelector) {
-    let teddies = await fetch("http://localhost:3000/api/teddies/").then((response) => {
+
+    let teddies = await fetch("https://oniroco-back.herokuapp.com/api/teddies/").then((response) => {
         return response.json()
+    }, (error) => {
+        console.log(error)
     }).then((json) => {
         json.forEach(teddy => {
             teddy = placeDecimal(teddy);
@@ -37,13 +40,15 @@ function createBearCard(teddy) {
     card.classList.add("card");
     card.style.width = "250px";
 
+    let imageContainer = document.createElement("div");
+    imageContainer.classList.add("card-img-container");
     let image = document.createElement("img");
     image.classList.add("card-img-top");
-    image.classList.add("h180");
     image.src = imgUrl;
-    image.alt = `Image de l'ourson nommé ${name}`
+    image.alt = `Image de l'ourson nommé ${name}`;
 
-    card.append(image)
+    imageContainer.append(image);
+    card.append(imageContainer);
 
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -51,7 +56,7 @@ function createBearCard(teddy) {
     let link = document.createElement("a");
     link.href = `./article.html?articleId=${id}`;
     link.classList.add("stretched-link")
-    let title = document.createElement("h5")
+    let title = document.createElement("h2")
     title.append(name)
     link.append(title)
     cardBody.append(link)
@@ -63,14 +68,16 @@ function createBearCard(teddy) {
     let colorsDiv = document.createElement("div");
     colorsDiv.classList.add("d-flex");
     colorsDiv.classList.add("gap");
-    colorsDiv.textContent = "Couleurs : ";
     colors.forEach(color => {
         let colorDiv = document.createElement("div");
         colorDiv.classList.add("color");
         colorDiv.style.backgroundColor = color;
         colorsDiv.appendChild(colorDiv);
     });
-    cardBody.append(colorsDiv);
+    let colorsDivContainer = document.createElement("div");
+    colorsDivContainer.textContent = "Couleurs : ";
+    colorsDivContainer.append(colorsDiv);
+    cardBody.append(colorsDivContainer);
 
     let prix = document.createElement("span")
     prix.append(`${price} €`)
@@ -78,21 +85,11 @@ function createBearCard(teddy) {
     cardBody.append(prix);
 
     card.append(cardBody);
-
-    let cardTemplate = `<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>`
     return card
-
 }
 
 export function getTeddyById(id) {
-    fetch(`http://localhost:3000/api/teddies/${id}`).then((response) => {
+    fetch(`https://oniroco-back.herokuapp.com/api/teddies/${id}`).then((response) => {
     return response.json()
 }).then((teddy) => {
     teddy = placeDecimal(teddy)
@@ -102,23 +99,26 @@ export function getTeddyById(id) {
 
 function createTeddyView(teddy) {
     let main = document.querySelector("main");
-    main.innerHTML = `<div class="card flex-md-row mt-4 mb-4 box-shadow h-md-250 w-75 mw-100 mx-auto">
-    <img loading="lazy" class="card-img-left flex-auto d-md-block w-100 w-md-50"  alt="article image"  src="${teddy.imageUrl}" >
-    <div class="card-body d-flex flex-column align-items-start">
-      <h3 class="mb-0">
-        ${teddy.name}
-      </h3>
-      <div class="mb-1 text-muted">${teddy.price} €</div>
-      <div class="input-group my-3 p-0 col-sm-3 col-md-3">
-            <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor-${teddy._id}">
-                
-            </select>
+    main.innerHTML = `
+    <div class="card flex-md-row mt-4 mb-4 box-shadow h-md-250 w-75 mw-100 mx-auto article">
+        <div class="article--thumbnail pull-left w-100">
+            <img loading="lazy" class="media-object article--img"  alt="article image ${teddy.name}"  src="${teddy.imageUrl}" >
         </div>
-      <p class="card-text mb-auto">${teddy.description}</p>
-      <button id="teddy-article" class="btn btn-rounded bg-primary text-white my-3 mx-auto">Ajouter au panier</button>
-      
-    </div>
-  </div>`;
+        <div class="card-body d-flex flex-column align-items-start">
+        <h1 class="mb-0 text-secondary">
+            ${teddy.name}
+        </h1>
+        <div class="mb-1 text-muted">${teddy.price} €</div>
+        <div class="input-group my-3 ">
+                <select class="form-select" aria-label="Default select example" id="inputGroupSelectColor-${teddy._id}">
+                    
+                </select>
+            </div>
+        <p class="card-text mb-auto">${teddy.description}</p>
+        <button id="teddy-article" class="btn btn-rounded bg-primary text-white my-3 mx-auto">Ajouter au panier</button>
+        
+        </div>
+    </div>`;
   let inputGroupSelectColor = document.querySelector(`#inputGroupSelectColor-${teddy._id}`);
     teddy.colors.forEach(color => {
         let option = document.createElement("option");
@@ -127,12 +127,18 @@ function createTeddyView(teddy) {
         inputGroupSelectColor.append(option);
     });
     document.querySelector(`#teddy-article`).addEventListener('click', () => {
-        
         teddy.color = inputGroupSelectColor.value;
         addToCart(teddy);
-        
+        wiggleCart();
     })
 }
 
-
+export function wiggleCart() {
+    document.querySelector("#cart-svg").classList.add("wiggle-cart");
+    document.querySelector("#cart-counter").classList.add("wiggle-cart");
+    setTimeout(() => {  
+        document.querySelector("#cart-counter").classList.remove("wiggle-cart"); 
+        document.querySelector("#cart-svg").classList.remove("wiggle-cart"); 
+    }, 200);
+}
 
