@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/test"
+  to = "https://oniroco-back.herokuapp.com/api/teddies/"
+  status = 200
