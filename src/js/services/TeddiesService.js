@@ -13,6 +13,7 @@ export async function getTeddiesListIntoContainer(querySelector) {
         return json
     });
     createCardList(querySelector, teddies);
+
 }
 
 export function placeDecimal(teddy) {
@@ -22,13 +23,12 @@ export function placeDecimal(teddy) {
 
 export function createCardList(querySelector, teddies) {
     let teddiesContainer = document.querySelector(querySelector);
-    teddies.forEach(teddy => {
-        let bearCard = createBearCard(teddy);
-        teddiesContainer.appendChild(bearCard);
+    teddies.forEach((teddy, index) => {
+        teddiesContainer.appendChild(createBearCard(teddy, index));
     });
 }  
 
-function createBearCard(teddy) {
+function createBearCard(teddy, index) {
     let id = teddy._id;
     let colors = teddy.colors;
     let description = teddy.description;
@@ -84,6 +84,10 @@ function createBearCard(teddy) {
     prix.style.fontWeight = "900";
     cardBody.append(prix);
 
+    card.classList.add("dont-show-card-main")
+    setTimeout(function(){ 
+        card.classList.remove("dont-show-card-main") 
+    }, index*200 + 100);
     card.append(cardBody);
     return card
 }
