@@ -1,4 +1,2 @@
-[[redirects]]
-  from = "./test"
-  to = "https://oniroco-back.herokuapp.com/api/teddies"
-  status = 200
+/test /amazing
+/kkkk https://oniroco-back.herokuapp.com/api/teddies
