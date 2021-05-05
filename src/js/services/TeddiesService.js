@@ -1,6 +1,6 @@
 import { addToCart } from "./CartService.js";
 
-if (window.location.origin == "https://auxent-adrien-orinoco.netlify.app/") {
+if (window.location.origin == "https://auxent-adrien-orinoco.netlify.app") {
   var baseUrl = "https://oniroco-back.herokuapp.com/api";
 } else {
   var baseUrl = "http://localhost:3000/api";

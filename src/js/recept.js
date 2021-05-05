@@ -2,7 +2,7 @@ import '../scss/style.scss'
 import { getProductList, getCart, clearCart } from "./services/CartService.js"
 import { updateCartCounter } from "./services/CartService.js";
 
-if (window.location.origin == "http://urlnetlify") {
+if (window.location.origin == "https://auxent-adrien-orinoco.netlify.app") {
   var baseUrl = "https://oniroco-back.herokuapp.com/api";
 } else {
   var baseUrl = "http://localhost:3000/api";
