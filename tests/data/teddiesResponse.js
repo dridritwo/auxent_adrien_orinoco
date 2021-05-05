@@ -7,7 +7,7 @@ export let teddiesResponse = [
             "White"
         ],
         "_id": "5be9c8541c9d440000665243",
-        "name": "Norbert",
+        "name": "Toto",
         "price": 2900,
         "imageUrl": "http://localhost:3000/images/teddy_1.jpg",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
