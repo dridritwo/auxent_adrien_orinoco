@@ -69,6 +69,13 @@ function createBearCard(teddy, index) {
   link.append(title);
   cardBody.append(link);
 
+  link.onfocus = function(){
+      card.classList.add("focused");
+    };
+  link.onfocusout = function(){
+      card.classList.remove("focused");
+    };
+
   let p = document.createElement("p");
   p.append(description);
   cardBody.append(p);

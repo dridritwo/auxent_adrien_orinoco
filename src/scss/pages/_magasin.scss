@@ -35,6 +35,11 @@
             box-shadow: 10px 12px 10px 1px rgba(0,0,0,0.42);
         }
     }
+    .focused {
+        border: 2px $primary solid;
+        transition: box-shadow 0.35s ease-out;
+        box-shadow: 10px 12px 10px 1px rgba(0,0,0,0.42);
+    }
 }
 
 .stretched-link {
