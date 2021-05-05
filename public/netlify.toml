@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "http://localhost:3000/test"
+  from = "./test"
   to = "https://oniroco-back.herokuapp.com/api/teddies"
   status = 200
