@@ -2,6 +2,12 @@ import '../scss/style.scss'
 import { getProductList, getCart, clearCart } from "./services/CartService.js"
 import { updateCartCounter } from "./services/CartService.js";
 
+if (window.location.origin == "http://urlnetlify") {
+  var baseUrl = "https://oniroco-back.herokuapp.com/api";
+} else {
+  var baseUrl = "http://localhost:3000/api";
+}
+
 let products = getProductList(getCart());
 const contact = {
     firstName: new URLSearchParams(window.location.search).get("firstName"),
@@ -24,7 +30,7 @@ async function postContact(contact, products){
         contact: contact,
         products: products
     }
-    let response = await fetch('https://oniroco-back.herokuapp.com/api/order', {
+    let response = await fetch(`${baseUrl}/teddies/order`, {
     method: 'POST',
     headers: {
     'Accept': 'application/json',
