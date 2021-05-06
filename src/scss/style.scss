@@ -1,5 +1,5 @@
-@import "./variable_overrides";
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./bootstrap/variable_overrides";
+@import "./bootstrap/bootstrap_imports";
 @import "./utils/variables";
 @import "./layout/header";
 @import "./animations/wiggle";
