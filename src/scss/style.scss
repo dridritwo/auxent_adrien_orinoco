@@ -19,6 +19,7 @@
 
 body {
     background-color: $tertiary;
+    opacity: 1;
 }
 
 a {
@@ -37,4 +38,8 @@ h1 {
 
 .bg-primary {
     background: $primary;
+}
+
+#cover {
+    display: none;
 }
