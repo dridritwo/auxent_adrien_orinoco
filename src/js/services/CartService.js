@@ -102,6 +102,8 @@ export function getCartSize(cart) {
     return quantitySum;
 }
 
+
+
 export function stringWithoutSpace(string) {
     return string.toString().replace(/\s/g,"");
 }
