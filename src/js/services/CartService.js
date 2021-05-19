@@ -1,5 +1,3 @@
-
-
 export function addToCart(teddy) {
     if (!window.localStorage.getItem('cart')){
         window.localStorage.setItem('cart', "{}")
@@ -56,7 +54,6 @@ export function getProductList(cart) {
     return productList
 }
 
-
 export function displayTotal(total) {
     let totalField = document.querySelector("#total");
     totalField ? totalField.innerHTML = `${total} €`: "";
@@ -101,8 +98,6 @@ export function getCartSize(cart) {
     }
     return quantitySum;
 }
-
-
 
 export function stringWithoutSpace(string) {
     return string.toString().replace(/\s/g,"");

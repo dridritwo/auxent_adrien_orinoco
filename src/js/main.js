@@ -1,6 +1,12 @@
 import '../scss/style.scss'
-import {getTeddiesListIntoContainer} from "./services/TeddiesService.js"
-import {updateCartCounter} from "./services/CartService.js"
+import * as TeddiesService from "./services/TeddiesService.js"
+import * as CartService from "./services/CartService.js"
+import * as DOMManipulation from "./services/DOMManipulation.js"
 
-getTeddiesListIntoContainer("#bears-list");
-updateCartCounter();
+CartService.updateCartCounter();
+getTeddiesListIntoContainer();
+
+async function getTeddiesListIntoContainer() {
+    let teddies = await TeddiesService.getTeddiesList();
+    DOMManipulation.createCardList("#bears-list", teddies);
+}
