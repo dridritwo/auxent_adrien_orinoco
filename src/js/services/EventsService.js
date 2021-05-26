@@ -55,7 +55,7 @@ export function addRemoveLineEvent(teddy, colorWithoutSpace, tableBody) {
     });
 }
 
-export function addColorSelectEvent(teddy, inputGroupSelectColor) {
+export function addToCartWithColor(teddy, inputGroupSelectColor) {
     document.querySelector(`#teddy-article`).addEventListener("click", () => {
       teddy.color = inputGroupSelectColor.value;
       CartService.addToCart(teddy);

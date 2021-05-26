@@ -106,7 +106,7 @@ export function createTeddyView(teddy) {
   );
   addColorsToArticleCard(teddy, inputGroupSelectColor);
 
-  EventsService.addColorSelectEvent(teddy, inputGroupSelectColor);
+  EventsService.addToCartWithColor(teddy, inputGroupSelectColor);
 }
 
 function addColorsToArticleCard(teddy, inputGroupSelectColor) {
